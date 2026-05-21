@@ -1,7 +1,6 @@
 # backend/main.py
 """
-BML College AI Chatbot — Backend
-FastAPI + WebSocket + Ollama phi3 + Human Agent Handover + WhatsApp
+BML College AI Chatbot — Backend App
 """
 
 import logging
@@ -13,11 +12,11 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse, FileResponse
 import os
 
-from config import settings
-from models.database import init_db
-from routers.chat import router as chat_router
-from routers.agent import router as agent_router
-from routers.whatsapp import router as whatsapp_router
+from backend.config import settings
+from backend.models.database import init_db
+from backend.routers.chat import router as chat_router
+from backend.routers.agent import router as agent_router
+from backend.routers.whatsapp import router as whatsapp_router
 
 # ── Logging ───────────────────────────────────────────────────────────────────
 logging.basicConfig(
