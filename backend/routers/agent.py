@@ -17,14 +17,14 @@ from datetime import datetime, timedelta
 from jose import jwt, JWTError
 from passlib.context import CryptContext
 
-from backend.models.database import get_db, Agent, ChatSession, Message, SessionStatus, MessageRole
-from backend.models.schemas import AgentLoginRequest, AgentLoginResponse, AgentMessageRequest
-from backend.services.agent_service import (
+from models.database import get_db, Agent, ChatSession, Message, SessionStatus, MessageRole
+from models.schemas import AgentLoginRequest, AgentLoginResponse, AgentMessageRequest
+from services.agent_service import (
     connected_agents, pending_queue, remove_from_queue,
     notify_agents, get_queue
 )
-from backend.routers.chat import session_websockets
-from backend.config import settings
+from routers.chat import session_websockets
+from config import settings
 
 router = APIRouter(prefix="/api/agent", tags=["agent"])
 logger = logging.getLogger(__name__)

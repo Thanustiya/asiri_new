@@ -8,8 +8,8 @@ import httpx
 import logging
 import asyncio
 from typing import Optional
-from backend.config import settings
-from backend.services.knowledge_base import OLLAMA_SYSTEM_PROMPT
+from config import settings
+from services.knowledge_base import OLLAMA_SYSTEM_PROMPT
 
 logger = logging.getLogger(__name__)
 
