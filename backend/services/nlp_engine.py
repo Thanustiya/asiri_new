@@ -13,7 +13,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 from fuzzywuzzy import fuzz
-from services.knowledge_base import COLLEGE_KNOWLEDGE, QUICK_REPLY_MAP
+from backend.services.knowledge_base import COLLEGE_KNOWLEDGE, QUICK_REPLY_MAP
 
 logger = logging.getLogger(__name__)
 

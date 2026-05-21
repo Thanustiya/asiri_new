@@ -4,21 +4,21 @@ from sqlalchemy import select
 import logging
 from datetime import datetime
 
-from models.database import (
+from backend.models.database import (
     get_db, ChatSession, Message, SessionStatus, MessageRole, Channel
 )
 
-from services.whatsapp_service import (
+from backend.services.whatsapp_service import (
     parse_whatsapp_incoming,
     send_whatsapp_message
 )
 
-from services.nlp_engine import nlp_engine
-from services.ollama_service import ollama_service
-from services.agent_service import (
+from backend.services.nlp_engine import nlp_engine
+from backend.services.ollama_service import ollama_service
+from backend.services.agent_service import (
     is_working_hours, get_working_hours_message, add_to_queue
 )
-from services.knowledge_base import COLLEGE_KNOWLEDGE
+from backend.services.knowledge_base import COLLEGE_KNOWLEDGE
 
 router = APIRouter(prefix="/api/whatsapp", tags=["whatsapp"])
 logger = logging.getLogger(__name__)

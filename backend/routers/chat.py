@@ -13,15 +13,15 @@ import logging
 import asyncio
 from datetime import datetime
 
-from models.database import get_db, ChatSession, Message, SessionStatus, MessageRole, Channel
-from models.schemas import StartSessionRequest, StartSessionResponse, ChatRequest, ChatResponse
-from services.nlp_engine import nlp_engine
-from services.ollama_service import ollama_service
-from services.agent_service import (
+from backend.models.database import get_db, ChatSession, Message, SessionStatus, MessageRole, Channel
+from backend.models.schemas import StartSessionRequest, StartSessionResponse, ChatRequest, ChatResponse
+from backend.services.nlp_engine import nlp_engine
+from backend.services.ollama_service import ollama_service
+from backend.services.agent_service import (
     is_working_hours, get_working_hours_message, add_to_queue,
     remove_from_queue, notify_agents, notify_session, connected_agents
 )
-from services.knowledge_base import COLLEGE_KNOWLEDGE
+from backend.services.knowledge_base import COLLEGE_KNOWLEDGE
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 logger = logging.getLogger(__name__)
@@ -43,6 +43,7 @@ async def start_session(
         status=SessionStatus.ACTIVE
     )
     db.add(session)
+
     await db.flush()
 
     welcome = COLLEGE_KNOWLEDGE["welcome"]
