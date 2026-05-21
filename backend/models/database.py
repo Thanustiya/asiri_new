@@ -5,7 +5,7 @@ from sqlalchemy.orm import DeclarativeBase, relationship
 from datetime import datetime
 import uuid
 import enum
-from config import settings
+from backend.config import settings
 
 
 engine = create_async_engine(settings.DATABASE_URL, echo=settings.DEBUG)
