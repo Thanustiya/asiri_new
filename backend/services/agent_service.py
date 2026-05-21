@@ -12,7 +12,7 @@ from typing import Dict, Set, Optional
 import asyncio
 import json
 import logging
-from config import settings
+from backend.config import settings
 
 logger = logging.getLogger(__name__)
 
