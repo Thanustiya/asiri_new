@@ -184,8 +184,7 @@
       if (USE_WEBSOCKET) connectWebSocket();
     } catch (e) {
       appendBotMessage(
-        "👋 Welcome. I'm having trouble connecting right now. " +
-        "Please try again or call us at +44 (0) 121 523 0141.",
+        "Welcome to the Asiri Perera Global Services AI Assistant. I am having trouble connecting to the live chat service right now. Please try again in a moment or contact WhatsApp: +94 717 798989.",
         []
       );
     }

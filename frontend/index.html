@@ -2514,6 +2514,258 @@
       }
     }
 
+
+    /* =========================================================
+       FINAL UPDATE: Render backend + warm dark/light section rhythm
+    ========================================================= */
+
+    :root {
+      --ink: #241205;
+      --navy: #2a1406;
+      --blue: #8b4a12;
+      --sky: #d88925;
+      --aqua: #f2b84b;
+      --coral: #b96316;
+      --gold: #ffc45a;
+      --paper: #fff7e8;
+      --soft: #ffedc7;
+      --white: #ffffff;
+      --muted: #745a3b;
+      --line: rgba(139, 74, 18, .18);
+      --shadow: 0 18px 52px rgba(42, 20, 6, .16);
+    }
+
+    html,
+    body {
+      background: #fff7e8;
+      color: #241205;
+    }
+
+    body {
+      background: linear-gradient(180deg, #2a1406 0%, #fff7e8 22%, #3a1b07 54%, #fff3d8 100%);
+    }
+
+    .loader {
+      background: linear-gradient(135deg, #fff7e8, #ffe0a1);
+    }
+
+    .loader-mark,
+    .brand-mark,
+    .service-number,
+    .quick-icon,
+    #bml-chat-button,
+    #bml-chat-header,
+    #bml-send-btn {
+      background: linear-gradient(135deg, #3a1b07, #b96316 58%, #ffc45a) !important;
+      color: #ffffff !important;
+    }
+
+    #progress,
+    .marquee {
+      background: linear-gradient(90deg, #2a1406, #8b4a12, #f2b84b) !important;
+      color: #ffffff;
+    }
+
+    .nav,
+    .nav.is-solid {
+      background: rgba(42, 20, 6, .94);
+      border-color: rgba(255, 218, 145, .24);
+      box-shadow: 0 16px 42px rgba(42, 20, 6, .28);
+    }
+
+    .nav-links a {
+      color: rgba(255, 246, 229, .82);
+    }
+
+    .nav-links a:hover {
+      color: #ffffff;
+      background: rgba(255, 196, 90, .14);
+    }
+
+    .btn-primary {
+      color: #ffffff;
+      background: linear-gradient(135deg, #3a1b07, #b96316 58%, #ffc45a);
+      box-shadow: 0 16px 36px rgba(185, 99, 22, .24);
+    }
+
+    .btn-light {
+      color: #2a1406;
+      background: rgba(255, 247, 232, .92);
+      border-color: rgba(255, 255, 255, .58);
+    }
+
+    .btn-outline {
+      color: #8b4a12;
+      background: rgba(185, 99, 22, .08);
+      border-color: rgba(185, 99, 22, .24);
+    }
+
+    .btn-outline:hover {
+      background: #8b4a12;
+      color: #ffffff;
+    }
+
+    .hero,
+    .hero::before {
+      background: linear-gradient(135deg, #1a0b03 0%, #3a1b07 52%, #b96316 100%);
+    }
+
+    .hero h1,
+    .hero .stat strong {
+      color: #ffffff;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(90deg, #ffffff, #ffd98b 48%, #f2b84b);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-copy,
+    .hero .stat span,
+    .hero-kicker {
+      color: rgba(255, 246, 229, .82);
+    }
+
+    .hero-kicker {
+      border-color: rgba(255, 218, 145, .22);
+      background: rgba(255, 196, 90, .12);
+    }
+
+    .about,
+    .quick-services,
+    .contact {
+      background: linear-gradient(180deg, #fffaf0 0%, #fff0cf 100%);
+      color: #241205;
+    }
+
+    .services,
+    .stories {
+      background: linear-gradient(180deg, #2a1406 0%, #4a2208 100%);
+      color: #ffffff;
+    }
+
+    .about .section-title,
+    .quick-services .section-title,
+    .contact .section-title {
+      color: #241205;
+    }
+
+    .services .section-title,
+    .stories .section-title {
+      color: #ffffff;
+    }
+
+    .services .section-copy,
+    .stories .section-copy {
+      color: rgba(255, 246, 229, .78);
+    }
+
+    .eyebrow,
+    .service-label,
+    .visual-note strong,
+    .office h3,
+    .quick-card a,
+    .office-icon,
+    .stars {
+      color: #b96316;
+    }
+
+    .services .eyebrow,
+    .stories .eyebrow,
+    .services .service-label,
+    .stories .stars {
+      color: #ffc45a;
+    }
+
+    .eyebrow::before {
+      background: linear-gradient(90deg, #8b4a12, #ffc45a);
+    }
+
+    .section-copy,
+    .about-text p,
+    .service p,
+    .quick-card p,
+    .story p,
+    .office p {
+      color: #745a3b;
+    }
+
+    .service,
+    .quick-card,
+    .story,
+    .office,
+    .visual-note,
+    .availability {
+      background: rgba(255, 250, 240, .94);
+      border-color: rgba(185, 99, 22, .18);
+      box-shadow: 0 14px 38px rgba(42, 20, 6, .13);
+    }
+
+    .service,
+    .quick-card,
+    .story {
+      background: linear-gradient(135deg, #fffaf0 0%, #ffe9bc 100%);
+    }
+
+    .quick-card.feature,
+    .philosophy {
+      background: linear-gradient(135deg, #3a1b07, #b96316 58%, #ffc45a);
+      color: #ffffff;
+    }
+
+    .quick-card.feature h3,
+    .quick-card.feature a,
+    .philosophy strong {
+      color: #ffffff;
+    }
+
+    .quick-card.feature p,
+    .philosophy small {
+      color: rgba(255, 246, 229, .84);
+    }
+
+    .contact-card {
+      background: #ffe7b5;
+    }
+
+    footer {
+      color: rgba(255, 246, 229, .74);
+      background: linear-gradient(180deg, #2a1406 0%, #120601 100%);
+    }
+
+    .footer-grid {
+      border-bottom-color: rgba(255, 218, 145, .16);
+    }
+
+    .footer-brand,
+    .footer-title {
+      color: #ffffff;
+    }
+
+    .footer-sub,
+    .footer-links a,
+    .footer-contact span,
+    .footer-contact a,
+    .footer-bottom {
+      color: rgba(255, 246, 229, .74);
+    }
+
+    .footer-links a:hover {
+      color: #ffc45a;
+    }
+
+    .socials a {
+      color: #ffffff;
+      background: rgba(255, 196, 90, .10);
+      border-color: rgba(255, 218, 145, .18);
+    }
+
+    .socials a:hover {
+      background: #b96316;
+      color: #ffffff;
+    }
+
 </style>
 </head>
 <body>
@@ -2945,7 +3197,7 @@
 
   <!-- BML AI Chat Widget -->
   <script>
-    window.BML_CHAT_API = window.BML_CHAT_API || window.ASIRI_CHAT_API || window.location.origin;
+    window.BML_CHAT_API = window.BML_CHAT_API || window.ASIRI_CHAT_API || "https://asiri-new6.onrender.com";
     (function loadChatWidget() {
       function inject(src, fallbackSrc) {
         const script = document.createElement("script");
