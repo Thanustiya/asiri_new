@@ -5,7 +5,7 @@
 (function () {
   'use strict';
 
-  const BML_API = window.BML_CHAT_API || 'http://localhost:8000';
+  const BML_API = window.BML_CHAT_API || window.location.origin;
   const USE_WEBSOCKET = true;
   const REQUEST_TIMEOUT_MS = 25000;
 

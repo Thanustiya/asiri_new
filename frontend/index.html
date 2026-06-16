@@ -2945,9 +2945,9 @@
 
   <!-- BML AI Chat Widget -->
   <script>
-    window.BML_CHAT_API = "http://localhost:8000";
+    window.BML_CHAT_API = window.location.origin;
   </script>
-  <script src="http://localhost:8000/static/chat-widget.js" defer></script>
+  <script src="/static/chat-widget.js" defer></script>
 
   <script>
     function openBMLChat(event) {
