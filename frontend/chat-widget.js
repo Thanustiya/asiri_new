@@ -6,6 +6,9 @@
   'use strict';
 
   const BML_API = window.BML_CHAT_API || window.location.origin;
+  const WIDGET_ASSET_BASE = document.currentScript && document.currentScript.src
+    ? new URL('.', document.currentScript.src).href.replace(/\/$/, '')
+    : BML_API + '/static';
   const USE_WEBSOCKET = true;
   const REQUEST_TIMEOUT_MS = 25000;
 
@@ -25,7 +28,7 @@
     // Inject CSS
     const link = document.createElement('link');
     link.rel = 'stylesheet';
-    link.href = BML_API + '/static/chat-widget.css';
+    link.href = WIDGET_ASSET_BASE + '/chat-widget.css';
     document.head.appendChild(link);
 
     // Chat toggle button

@@ -74,6 +74,22 @@ async def serve_index():
     return HTMLResponse("<h1>BML College Chatbot API</h1><p><a href='/api/docs'>API Docs</a></p>")
 
 
+@app.get("/chat-widget.js", include_in_schema=False)
+async def serve_chat_widget_js():
+    widget_js = os.path.join(frontend_path, "chat-widget.js")
+    if os.path.exists(widget_js):
+        return FileResponse(widget_js, media_type="application/javascript")
+    return HTMLResponse("", status_code=404)
+
+
+@app.get("/chat-widget.css", include_in_schema=False)
+async def serve_chat_widget_css():
+    widget_css = os.path.join(frontend_path, "chat-widget.css")
+    if os.path.exists(widget_css):
+        return FileResponse(widget_css, media_type="text/css")
+    return HTMLResponse("", status_code=404)
+
+
 @app.get("/agent", response_class=HTMLResponse, include_in_schema=False)
 async def serve_agent():
     agent_html = os.path.join(frontend_path, "agent-dashboard.html")

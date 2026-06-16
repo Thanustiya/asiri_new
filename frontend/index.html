@@ -2945,9 +2945,21 @@
 
   <!-- BML AI Chat Widget -->
   <script>
-    window.BML_CHAT_API = window.location.origin;
+    window.BML_CHAT_API = window.BML_CHAT_API || window.ASIRI_CHAT_API || window.location.origin;
+    (function loadChatWidget() {
+      function inject(src, fallbackSrc) {
+        const script = document.createElement("script");
+        script.src = src;
+        script.defer = true;
+        if (fallbackSrc) {
+          script.onerror = () => inject(fallbackSrc);
+        }
+        document.body.appendChild(script);
+      }
+
+      inject("chat-widget.js", "/static/chat-widget.js");
+    })();
   </script>
-  <script src="/static/chat-widget.js" defer></script>
 
   <script>
     function openBMLChat(event) {
