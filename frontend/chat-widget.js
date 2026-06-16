@@ -1,5 +1,5 @@
 /* frontend/chat-widget.js
-   BML College AI Chatbot Widget
+   Asiri Perera AI Chatbot Widget
    Embed with: <script src="chat-widget.js"></script>
 */
 (function () {
@@ -7,6 +7,7 @@
 
   const BML_API = window.BML_CHAT_API || 'http://localhost:8000';
   const USE_WEBSOCKET = true;
+  const REQUEST_TIMEOUT_MS = 25000;
 
   // ── State ──────────────────────────────────────────────────────────────
   let sessionId = null;
@@ -16,6 +17,7 @@
   let isSessionClosed = false;
   let unreadCount = 0;
   let wsReconnectTimer = null;
+  let responseTimeoutTimer = null;
   let lastUserInput = '';
 
   // ── Build DOM ──────────────────────────────────────────────────────────
@@ -28,7 +30,7 @@
 
     // Chat toggle button
     document.body.insertAdjacentHTML('beforeend', `
-      <button id="bml-chat-button" aria-label="Open BML Chat" title="Chat with BML College">
+      <button id="bml-chat-button" aria-label="Open AI Chat" title="Chat with Asiri Perera AI">
         <svg id="bml-chat-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path d="M20 2H4a2 2 0 00-2 2v13a2 2 0 002 2h3v3l5.5-3H20a2 2 0 002-2V4a2 2 0 00-2-2z"/>
         </svg>
@@ -38,11 +40,11 @@
         <div id="bml-chat-badge"></div>
       </button>
 
-      <div id="bml-chat-window" role="dialog" aria-label="BML College Chat">
+      <div id="bml-chat-window" role="dialog" aria-label="Asiri Perera AI Chat">
         <div id="bml-chat-header">
           <div class="bml-header-avatar">🎓</div>
           <div class="bml-header-info">
-            <h3>BML College Assistant</h3>
+            <h3>Asiri Perera AI Assistant</h3>
             <p><span class="bml-status-dot" id="bml-status-dot"></span>
                <span id="bml-status-text">Online · Typically replies instantly</span></p>
           </div>
@@ -76,7 +78,7 @@
         </div>
 
         <div class="bml-chat-footer">
-          Powered by BML College AI · <a href="https://www.bmlcollege.com" target="_blank">bmlcollege.com</a>
+          Powered by Asiri Perera AI · <a href="https://www.bmlcollege.com" target="_blank">bmlcollege.com</a>
         </div>
       </div>
     `);
@@ -120,6 +122,33 @@
     document.getElementById('bml-close-icon').style.display = 'none';
   }
 
+
+  function clearResponseTimeout() {
+    clearTimeout(responseTimeoutTimer);
+    responseTimeoutTimer = null;
+  }
+
+  function startResponseTimeout() {
+    clearResponseTimeout();
+    responseTimeoutTimer = setTimeout(() => {
+      hideTyping();
+      appendBotMessage(
+        "This is taking longer than expected. Please try a specific service question, or contact WhatsApp: +94 717 798989.",
+        []
+      );
+    }, REQUEST_TIMEOUT_MS);
+  }
+
+  async function fetchWithTimeout(url, options = {}) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    try {
+      return await fetch(url, { ...options, signal: controller.signal });
+    } finally {
+      clearTimeout(timer);
+    }
+  }
+
   function clearBadge() {
     unreadCount = 0;
     const badge = document.getElementById('bml-chat-badge');
@@ -139,7 +168,7 @@
   // ── Session ────────────────────────────────────────────────────────────
   async function startSession() {
     try {
-      const res = await fetch(BML_API + '/api/chat/start', {
+      const res = await fetchWithTimeout(BML_API + '/api/chat/start', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ channel: 'web' })
@@ -152,7 +181,7 @@
       if (USE_WEBSOCKET) connectWebSocket();
     } catch (e) {
       appendBotMessage(
-        "👋 Welcome to BML College! I'm having trouble connecting right now. " +
+        "👋 Welcome. I'm having trouble connecting right now. " +
         "Please try again or call us at +44 (0) 121 523 0141.",
         []
       );
@@ -219,11 +248,12 @@
     if (!sessionId) { await startSession(); return; }
 
     if (ws && ws.readyState === WebSocket.OPEN) {
+      startResponseTimeout();
       ws.send(JSON.stringify({ type: 'message', message: text }));
     } else {
       // Fallback to REST
       try {
-        const res = await fetch(BML_API + '/api/chat/message', {
+        const res = await fetchWithTimeout(BML_API + '/api/chat/message', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_id: sessionId, message: text })
@@ -239,6 +269,7 @@
   }
 
   function handleBotResponse(data) {
+    clearResponseTimeout();
     hideTyping();
     if (!data.message && data.status === 'with_agent') return;
 
@@ -256,6 +287,7 @@
   }
 
   function handleAgentResponse(data) {
+    clearResponseTimeout();
     hideTyping();
     appendAgentMessage(data.message);
     bumpBadge();
@@ -364,10 +396,11 @@
   async function sendQuickReply(text) {
     if (!sessionId) return;
     if (ws && ws.readyState === WebSocket.OPEN) {
+      startResponseTimeout();
       ws.send(JSON.stringify({ type: 'message', message: text }));
     } else {
       try {
-        const res = await fetch(BML_API + '/api/chat/message', {
+        const res = await fetchWithTimeout(BML_API + '/api/chat/message', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ session_id: sessionId, message: text })

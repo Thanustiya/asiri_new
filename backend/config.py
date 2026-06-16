@@ -17,7 +17,7 @@ class Settings(BaseSettings):
     # Ollama
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "phi3"
-    OLLAMA_TIMEOUT: int = 120  # 2 minutes timeout
+    OLLAMA_TIMEOUT: int = 20  # Keep website chat responsive
 
     # Working Hours (UK time)
     TIMEZONE: str = "Europe/London"

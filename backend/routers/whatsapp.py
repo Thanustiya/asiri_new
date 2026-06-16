@@ -23,6 +23,26 @@ from services.knowledge_base import COLLEGE_KNOWLEDGE
 router = APIRouter(prefix="/api/whatsapp", tags=["whatsapp"])
 logger = logging.getLogger(__name__)
 
+AI_UNABLE_MARKERS = (
+    "i don't know",
+    "i do not know",
+    "i'm not sure",
+    "i am not sure",
+    "i cannot answer",
+    "i can't answer",
+    "not enough information",
+    "i don't have enough information",
+    "i do not have enough information",
+    "unable to answer",
+)
+
+
+def _ai_needs_handover(response: str | None) -> bool:
+    if not response or not response.strip():
+        return True
+    text = response.lower()
+    return any(marker in text for marker in AI_UNABLE_MARKERS)
+
 
 @router.get("/webhook")
 async def verify_webhook():
@@ -92,9 +112,12 @@ async def _process_message(session, message: str, db: AsyncSession) -> str:
     )
     db.add(user_msg)
 
-    # Agent mode
-    if session.status == SessionStatus.WITH_AGENT:
-        return ""
+    # Agent / handover mode
+    if session.status in (SessionStatus.WITH_AGENT, SessionStatus.WAITING_AGENT):
+        await db.commit()
+        if session.status == SessionStatus.WITH_AGENT:
+            return ""
+        return "Your message has been sent to an advisor. A team member will reply shortly."
 
     # Human request
     if nlp_engine.is_human_request(message):
@@ -113,14 +136,20 @@ async def _process_message(session, message: str, db: AsyncSession) -> str:
 
     # AI/NLP response
     intent, confidence, needs_ollama = nlp_engine.classify(message)
+    kb_response, _ = nlp_engine.get_response(intent)
+    history = []
 
     if not needs_ollama and intent != "fallback":
-        response, _ = nlp_engine.get_response(intent)
+        response = kb_response
     else:
-        history = []
         response = await ollama_service.generate(message, history)
-        if not response:
-            response, _ = nlp_engine.get_response("fallback")
+        if _ai_needs_handover(response):
+            response = (
+                "I am not fully confident about that answer, so I am connecting you "
+                "to an advisor. A team member will help you shortly."
+            )
+            session.status = SessionStatus.WAITING_AGENT
+            await add_to_queue(session.id, session.user_name, message, "whatsapp")
 
     # Save bot message
     bot_msg = Message(

@@ -1,14 +1,14 @@
 /* frontend/chat-widget.css */
 :root {
-  --bml-primary: #1a3c6b;
-  --bml-secondary: #e8a020;
-  --bml-accent: #2563eb;
+  --bml-primary: #071d3a;
+  --bml-secondary: #7fb8ff;
+  --bml-accent: #0f4fa8;
   --bml-green: #16a34a;
-  --bml-light: #f0f4f8;
+  --bml-light: #eaf3ff;
   --bml-white: #ffffff;
   --bml-gray: #6b7280;
   --bml-dark: #1f2937;
-  --bml-shadow: 0 8px 32px rgba(26, 60, 107, 0.25);
+  --bml-shadow: 0 8px 32px rgba(7, 29, 58, 0.25);
   --bml-radius: 18px;
   --bml-radius-sm: 10px;
 }

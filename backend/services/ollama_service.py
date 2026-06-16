@@ -1,7 +1,7 @@
 # backend/services/ollama_service.py
 """
-Ollama phi3 integration — only called for complex/ambiguous queries.
-Configured for simple, concise college-focused answers.
+Local Ollama integration for free AI chat support.
+Configured for concise Asiri Perera website and general-help answers.
 """
 
 import httpx
@@ -32,10 +32,11 @@ class OllamaService:
     async def generate(
         self,
         user_message: str,
-        conversation_history: Optional[list] = None
+        conversation_history: Optional[list] = None,
+        knowledge_hint: Optional[str] = None
     ) -> Optional[str]:
         """
-        Generate a response from Ollama phi3.
+        Generate a response from the configured local Ollama model.
         Returns None if Ollama is unavailable.
         """
         if not await self.is_available():
@@ -44,6 +45,11 @@ class OllamaService:
 
         # Build messages
         messages = [{"role": "system", "content": OLLAMA_SYSTEM_PROMPT}]
+        if knowledge_hint:
+            messages.append({
+                "role": "system",
+                "content": "Most relevant site knowledge for this question:\n" + knowledge_hint
+            })
 
         # Add recent history (last 4 exchanges to stay fast)
         if conversation_history:
@@ -60,9 +66,10 @@ class OllamaService:
             "model": self.model,
             "messages": messages,
             "stream": False,
+            "keep_alive": "10m",
             "options": {
                 "temperature": 0.3,      # Low temp = more factual
-                "num_predict": 200,      # Short responses
+                "num_predict": 180,      # Shorter local answers respond faster
                 "top_k": 10,
                 "top_p": 0.9,
                 "stop": ["\n\n\n", "Human:", "User:"]
@@ -92,6 +99,7 @@ class OllamaService:
         self,
         user_message: str,
         conversation_history: Optional[list] = None,
+        knowledge_hint: Optional[str] = None,
         on_token=None
     ):
         """
@@ -102,6 +110,11 @@ class OllamaService:
             return None
 
         messages = [{"role": "system", "content": OLLAMA_SYSTEM_PROMPT}]
+        if knowledge_hint:
+            messages.append({
+                "role": "system",
+                "content": "Most relevant site knowledge for this question:\n" + knowledge_hint
+            })
 
         if conversation_history:
             recent = conversation_history[-8:]
@@ -117,9 +130,10 @@ class OllamaService:
             "model": self.model,
             "messages": messages,
             "stream": True,
+            "keep_alive": "10m",
             "options": {
                 "temperature": 0.3,
-                "num_predict": 200,
+                "num_predict": 180,
                 "top_k": 10,
             }
         }

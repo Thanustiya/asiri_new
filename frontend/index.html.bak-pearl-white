@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -1370,6 +1370,28 @@
       color: var(--white) !important;
     }
 
+    #bml-chat-button {
+      position: fixed !important;
+      right: 28px !important;
+      bottom: 28px !important;
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      z-index: 2147483646 !important;
+    }
+
+    #bml-chat-window {
+      position: fixed !important;
+      z-index: 2147483647 !important;
+    }
+
+    #bml-chat-window.open {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
     #bml-status-dot {
       background: var(--sky) !important;
     }
@@ -1552,7 +1574,7 @@
 
     /* =========================================================
        UPDATED WARM PREMIUM COLOUR SYSTEM + COMPACT SPACING
-       Inspired by the orange Learn · Do · Rise reference card
+       Inspired by the orange Learn Â· Do Â· Rise reference card
     ========================================================= */
 
     :root {
@@ -2149,372 +2171,8 @@
         padding-top: 132px;
       }
     }
-
-    /* =========================================================
-       FINAL UPDATE: dark blue header/footer + white/blue rhythm
-    ========================================================= */
-
-    :root {
-      --ink: #071427;
-      --navy: #071d3a;
-      --blue: #0f4fa8;
-      --sky: #2d7de0;
-      --aqua: #1b9bd8;
-      --coral: #2f6ec7;
-      --gold: #7fb8ff;
-      --paper: #f6faff;
-      --soft: #e8f2ff;
-      --white: #ffffff;
-      --muted: #516276;
-      --line: rgba(15, 79, 168, .16);
-      --shadow: 0 18px 52px rgba(7, 29, 58, .14);
-    }
-
-    html,
-    body {
-      background: #f6faff;
-      color: var(--ink);
-    }
-
-    body {
-      background: linear-gradient(180deg, #ffffff 0%, #eaf3ff 48%, #ffffff 100%);
-    }
-
-    .loader {
-      background: linear-gradient(135deg, #ffffff, #e7f1ff);
-    }
-
-    .loader-mark,
-    .brand-mark,
-    .service-number,
-    .quick-icon,
-    #bml-chat-button,
-    #bml-chat-header,
-    #bml-send-btn {
-      background: linear-gradient(135deg, #08264d, #0f4fa8 58%, #2d7de0) !important;
-      color: #ffffff !important;
-    }
-
-    #progress {
-      background: linear-gradient(90deg, #08264d, #0f4fa8, #2d7de0) !important;
-    }
-
-    .nav {
-      top: 12px;
-      background: rgba(6, 24, 52, .88);
-      color: #ffffff;
-      border-color: rgba(255, 255, 255, .16);
-      box-shadow: 0 16px 42px rgba(7, 29, 58, .24);
-    }
-
-    .nav.is-solid {
-      background: rgba(4, 18, 40, .96);
-    }
-
-    .nav-links a {
-      color: rgba(255, 255, 255, .78);
-    }
-
-    .nav-links a:hover {
-      color: #ffffff;
-      background: rgba(255, 255, 255, .10);
-    }
-
-    .btn-primary {
-      color: #ffffff;
-      background: linear-gradient(135deg, #08264d, #0f4fa8 58%, #2d7de0);
-      box-shadow: 0 16px 36px rgba(15, 79, 168, .24);
-    }
-
-    .btn-light {
-      color: #071d3a;
-      background: rgba(255, 255, 255, .90);
-      border-color: rgba(255, 255, 255, .55);
-    }
-
-    .btn-outline {
-      color: #0f4fa8;
-      background: rgba(15, 79, 168, .08);
-      border-color: rgba(15, 79, 168, .22);
-    }
-
-    .btn-outline:hover {
-      background: #0f4fa8;
-      color: #ffffff;
-    }
-
-    .eyebrow,
-    .service-label,
-    .visual-note strong,
-    .office h3,
-    .quick-card a,
-    .office-icon,
-    .stars {
-      color: #0f4fa8;
-    }
-
-    .eyebrow::before {
-      background: linear-gradient(90deg, #0f4fa8, #2d7de0);
-    }
-
-    .section-title {
-      color: #071427;
-    }
-
-    .section-copy,
-    .about-text p,
-    .service p,
-    .quick-card p,
-    .story p,
-    .office p {
-      color: #516276;
-    }
-
-    .hero {
-      min-height: 82svh;
-      background: linear-gradient(135deg, #041228 0%, #08264d 48%, #0f4fa8 100%);
-    }
-
-    .hero::before {
-      background: linear-gradient(135deg, #041228 0%, #08264d 48%, #0f4fa8 100%);
-    }
-
-    .hero h1,
-    .hero .stat strong {
-      color: #ffffff;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(90deg, #ffffff, #9fcaff 48%, #54d4ff);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
-
-    .hero-copy,
-    .hero .stat span,
-    .hero-kicker {
-      color: rgba(255, 255, 255, .80);
-    }
-
-    .hero-kicker {
-      border-color: rgba(255, 255, 255, .18);
-      background: rgba(255, 255, 255, .10);
-    }
-
-    .marquee {
-      background: linear-gradient(90deg, #08264d, #0f4fa8, #2d7de0);
-      color: #ffffff;
-    }
-
-    .about,
-    .quick-services,
-    .contact {
-      background: #ffffff;
-    }
-
-    .services,
-    .stories {
-      background: linear-gradient(180deg, #eaf3ff 0%, #dcecff 100%);
-    }
-
-    .service,
-    .quick-card,
-    .story,
-    .office,
-    .visual-note,
-    .availability {
-      background: rgba(255, 255, 255, .88);
-      border-color: rgba(15, 79, 168, .14);
-      box-shadow: 0 14px 38px rgba(7, 29, 58, .10);
-    }
-
-    .service {
-      background: linear-gradient(135deg, #ffffff 0%, #eef6ff 100%);
-    }
-
-    .quick-card.feature,
-    .philosophy {
-      background: linear-gradient(135deg, #08264d, #0f4fa8 58%, #2d7de0);
-      color: #ffffff;
-    }
-
-    .quick-card.feature h3,
-    .quick-card.feature a,
-    .philosophy strong {
-      color: #ffffff;
-    }
-
-    .quick-card.feature p,
-    .philosophy small {
-      color: rgba(255, 255, 255, .78);
-    }
-
-    .contact-card {
-      background: #dcecff;
-    }
-
-    footer {
-      color: rgba(255, 255, 255, .70);
-      background: linear-gradient(180deg, #071d3a 0%, #041228 100%);
-    }
-
-    .footer-grid {
-      border-bottom-color: rgba(255, 255, 255, .12);
-    }
-
-    .footer-brand,
-    .footer-title {
-      color: #ffffff;
-    }
-
-    .footer-sub,
-    .footer-links a,
-    .footer-contact span,
-    .footer-contact a,
-    .footer-bottom {
-      color: rgba(255, 255, 255, .70);
-    }
-
-    .footer-links a:hover {
-      color: #9fcaff;
-    }
-
-    .socials a {
-      color: #ffffff;
-      background: rgba(255, 255, 255, .08);
-      border-color: rgba(255, 255, 255, .14);
-    }
-
-    .socials a:hover {
-      background: #0f4fa8;
-      color: #ffffff;
-    }
-
-
-    /* =========================================================
-       FINAL UPDATE: elegant motion layer
-    ========================================================= */
-
-    @keyframes elegant-drop {
-      from { opacity: 0; transform: translateY(-14px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes elegant-fade-up {
-      from { opacity: 0; transform: translateY(22px); filter: blur(5px); }
-      to { opacity: 1; transform: translateY(0); filter: blur(0); }
-    }
-
-    @keyframes elegant-float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-8px); }
-    }
-
-    @keyframes chat-breathe {
-      0%, 100% { box-shadow: 0 18px 44px rgba(15, 79, 168, .28); }
-      50% { box-shadow: 0 24px 58px rgba(45, 125, 224, .38); }
-    }
-
-    .nav {
-      animation: elegant-drop .7s var(--ease) both;
-      backdrop-filter: blur(18px);
-    }
-
-    .hero-kicker,
-    .hero h1,
-    .hero-copy,
-    .hero-actions,
-    .hero-meta {
-      animation-name: elegant-fade-up;
-    }
-
-    .hero-showcase {
-      animation:
-        elegant-fade-up .9s var(--ease) .18s both,
-        elegant-float 7s ease-in-out 1.2s infinite;
-    }
-
-    .hero-showcase::before,
-    .hero::after,
-    .service-visual::after {
-      display: none;
-    }
-
-    .service,
-    .quick-card,
-    .story,
-    .office {
-      animation: elegant-fade-up .75s var(--ease) both;
-      transform-origin: center;
-    }
-
-    .service:nth-child(2),
-    .quick-card:nth-child(2),
-    .story:nth-child(2),
-    .office:nth-child(2) {
-      animation-delay: .08s;
-    }
-
-    .service:nth-child(3),
-    .quick-card:nth-child(3),
-    .story:nth-child(3) {
-      animation-delay: .16s;
-    }
-
-    .service:hover,
-    .quick-card:hover,
-    .story:hover,
-    .office:hover {
-      transform: translateY(-6px);
-      border-color: rgba(15, 79, 168, .28);
-      box-shadow: 0 22px 54px rgba(7, 29, 58, .16);
-    }
-
-    .btn,
-    .footer-links a,
-    .socials a,
-    .quick-card a {
-      transition:
-        transform .25s var(--ease),
-        background .25s var(--ease),
-        color .25s var(--ease),
-        border-color .25s var(--ease),
-        box-shadow .25s var(--ease);
-    }
-
-    .btn:hover,
-    .socials a:hover,
-    .quick-card a:hover {
-      transform: translateY(-2px);
-    }
-
-    #bml-chat-button {
-      animation: chat-breathe 2.8s ease-in-out infinite;
-    }
-
-    #bml-chat-window {
-      border: 1px solid rgba(15, 79, 168, .18);
-      box-shadow: 0 24px 70px rgba(7, 29, 58, .24);
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      .nav,
-      .hero-kicker,
-      .hero h1,
-      .hero-copy,
-      .hero-actions,
-      .hero-meta,
-      .hero-showcase,
-      .service,
-      .quick-card,
-      .story,
-      .office,
-      #bml-chat-button {
-        animation: none !important;
-      }
-    }
-
 </style>
+  <link rel="stylesheet" href="chat-widget.css">
 </head>
 <body>
   <div class="loader" id="loader" aria-hidden="true">
@@ -2820,32 +2478,32 @@
         <div class="slider-shell">
           <div class="story-track" id="storyTrack">
             <article class="story">
-              <div class="stars">★★★★★</div>
+              <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p>I successfully completed my qualification at BML College, Birmingham. The academic support and guidance were very helpful. Thank you to the college.</p>
               <div class="author"><img src="https://framerusercontent.com/images/Wu0ngxjedkJ31EstGJABQBoafk.jpg" alt=""><div><strong>Christianna Lawrence</strong><span>Student, BML College Birmingham</span></div></div>
             </article>
             <article class="story">
-              <div class="stars">★★★★★</div>
+              <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p>I am truly grateful for the exceptional support I received from BML College Malabe Campus throughout my UK visa process. They guided us through every step with patience and professionalism.</p>
               <div class="author"><img src="https://framerusercontent.com/images/bphS41hVtvFCNiuHkZkxk8imJk.jpg" alt=""><div><strong>Gayan Dinendra</strong><span>UK Visa Applicant</span></div></div>
             </article>
             <article class="story">
-              <div class="stars">★★★★★</div>
+              <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p>I am very thankful to BML College for their excellent support in getting my UK student visa. They answered all my questions and made the process stress-free.</p>
               <div class="author"><img src="https://framerusercontent.com/images/CYC5VQ0ZcK8uEE5jBbm51FTJq0.jpg" alt=""><div><strong>Kaveesha Kavimudi</strong><span>International Student</span></div></div>
             </article>
             <article class="story">
-              <div class="stars">★★★★★</div>
+              <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p>We had a great experience with BML College while applying for our UK student and dependent visas. The team was supportive, friendly, and always available.</p>
               <div class="author"><img src="https://framerusercontent.com/images/prGsWNLXwFL3SoKDU2EYWYhZ2k.jpg" alt=""><div><strong>Sachini Bandara</strong><span>Student and Dependent Visa Applicant</span></div></div>
             </article>
             <article class="story">
-              <div class="stars">★★★★★</div>
+              <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p>I would like to express my appreciation to BML College for facilitating my application for a work visa in the UK. Their professionalism and commitment were highly commendable.</p>
               <div class="author"><img src="https://framerusercontent.com/images/P0sSNnMlhW7adaGkZFmKHL828bY.jpg" alt=""><div><strong>Lasantha Vithanage</strong><span>UK Work Visa Applicant</span></div></div>
             </article>
             <article class="story">
-              <div class="stars">★★★★★</div>
+              <div class="stars">â˜…â˜…â˜…â˜…â˜…</div>
               <p>Thank you for the brilliant services provided by team BML. I was able to receive my visa without hassle because of their professionalism and helpful guidance.</p>
               <div class="author"><img src="https://framerusercontent.com/images/5O8P63EQwkFO1m5OTR4jsw7hI8.jpg" alt=""><div><strong>Imasha Kalpani</strong><span>Student, BML College</span></div></div>
             </article>
@@ -2947,7 +2605,7 @@
   <script>
     window.BML_CHAT_API = "http://localhost:8000";
   </script>
-  <script src="http://localhost:8000/static/chat-widget.js" defer></script>
+  <script src="chat-widget.js" defer></script>
 
   <script>
     function openBMLChat(event) {
@@ -2958,9 +2616,16 @@
           window.BMLChat.open();
           return true;
         }
+
+        const widgetButton = document.getElementById("bml-chat-button");
+        const chatWindow = document.getElementById("bml-chat-window");
+        if (widgetButton && !chatWindow?.classList.contains("open")) {
+          widgetButton.click();
+          return true;
+        }
+
         return false;
       };
-
       if (openWidget()) return;
 
       let attempts = 0;
@@ -3157,3 +2822,5 @@
   </script>
 </body>
 </html>
+
+

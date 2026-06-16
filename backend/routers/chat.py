@@ -29,6 +29,28 @@ logger = logging.getLogger(__name__)
 # Active WebSocket connections for chat sessions {session_id: websocket}
 session_websockets: Dict[str, WebSocket] = {}
 
+AI_UNABLE_MARKERS = (
+    "i don't know",
+    "i do not know",
+    "i'm not sure",
+    "i am not sure",
+    "i cannot answer",
+    "i can't answer",
+    "not enough information",
+    "i don't have enough information",
+    "i do not have enough information",
+    "i don't have access",
+    "i do not have access",
+    "unable to answer",
+)
+
+
+def _ai_needs_handover(response: str | None) -> bool:
+    if not response or not response.strip():
+        return True
+    text = response.lower()
+    return any(marker in text for marker in AI_UNABLE_MARKERS)
+
 
 # ── Start Session ──────────────────────────────────────────────────────────────
 @router.post("/start", response_model=StartSessionResponse)
@@ -80,8 +102,8 @@ async def send_message(
     if not session:
         raise HTTPException(status_code=404, detail="Session not found")
 
-    # If session is with an agent, don't auto-respond
-    if session.status == SessionStatus.WITH_AGENT:
+    # If the session has been handed over, don't auto-respond.
+    if session.status in (SessionStatus.WITH_AGENT, SessionStatus.WAITING_AGENT):
         user_msg = Message(
             session_id=session.id,
             role=MessageRole.USER,
@@ -97,8 +119,11 @@ async def send_message(
         })
         return ChatResponse(
             session_id=session.id,
-            message="",
-            status="with_agent"
+            message=(
+                "" if session.status == SessionStatus.WITH_AGENT
+                else "Your message has been sent to an advisor. A team member will reply shortly."
+            ),
+            status=session.status.value
         )
 
     # Save user message
@@ -132,18 +157,16 @@ async def send_message(
     # Classify intent
     intent, confidence, needs_ollama = nlp_engine.classify(request.message)
 
-    bot_response = None
-    quick_replies = []
+    kb_response, quick_replies = nlp_engine.get_response(intent)
 
     if not needs_ollama and intent != "fallback":
-        # Use knowledge base (fast path)
-        bot_response, quick_replies = nlp_engine.get_response(intent)
+        # Fast path for customer support questions. Do not make visitors wait
+        # for a local model when the site knowledge base already has the answer.
+        bot_response = kb_response
     else:
-        # Try Ollama for complex queries
         bot_response = await ollama_service.generate(request.message, history)
-        if not bot_response:
-            # Ollama unavailable — use fallback
-            bot_response, quick_replies = nlp_engine.get_response("fallback")
+        if _ai_needs_handover(bot_response):
+            return await _handle_ai_handover(session, request.message, db)
 
     # Save bot response
     bot_msg = Message(
@@ -164,6 +187,42 @@ async def send_message(
         confidence=confidence,
         quick_replies=quick_replies,
         status=session.status.value
+    )
+
+
+async def _handle_ai_handover(session, user_message: str, db: AsyncSession) -> ChatResponse:
+    response = (
+        "I am not fully confident about that answer, so I am connecting you to an advisor. "
+        "A team member will help you shortly."
+    )
+    session.status = SessionStatus.WAITING_AGENT
+    session.updated_at = datetime.utcnow()
+
+    bot_msg = Message(
+        session_id=session.id,
+        role=MessageRole.BOT,
+        content=response,
+        intent="human_agent",
+        confidence=100
+    )
+    db.add(bot_msg)
+    await db.commit()
+
+    await add_to_queue(
+        session_id=session.id,
+        user_name=session.user_name or "Anonymous",
+        last_message=user_message,
+        channel=session.channel.value
+    )
+
+    return ChatResponse(
+        session_id=session.id,
+        message=response,
+        intent="human_agent",
+        confidence=100,
+        quick_replies=[],
+        status="waiting_agent",
+        transferred_to_agent=True
     )
 
 
