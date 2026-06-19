@@ -2516,40 +2516,37 @@
 
 
     /* =========================================================
-       FINAL UPDATE: Render backend + deep blue background
+       FINAL UPDATE: balanced blue section rhythm
     ========================================================= */
 
     :root {
-      --ink: #eef7ff;
-      --navy: #03152f;
+      --ink: #08224a;
+      --navy: #061b3a;
       --blue: #0b3f8f;
       --sky: #2f80ed;
-      --aqua: #7dd3fc;
+      --aqua: #8fd3ff;
       --coral: #f7b955;
       --gold: #ffd166;
-      --paper: #061b3a;
-      --soft: #0b2a55;
+      --paper: #f5fbff;
+      --soft: #e3f2ff;
       --white: #ffffff;
-      --muted: #b9d2ec;
-      --line: rgba(125, 211, 252, .22);
-      --shadow: 0 20px 58px rgba(0, 12, 32, .36);
+      --muted: #4d6784;
+      --line: rgba(11, 63, 143, .16);
+      --shadow: 0 18px 52px rgba(6, 27, 58, .14);
     }
 
     html,
     body {
-      background: #03152f;
-      color: #eef7ff;
+      background: #f5fbff;
+      color: #08224a;
     }
 
     body {
-      background:
-        radial-gradient(circle at 14% 8%, rgba(47, 128, 237, .26), transparent 34%),
-        radial-gradient(circle at 86% 28%, rgba(125, 211, 252, .16), transparent 31%),
-        linear-gradient(180deg, #03152f 0%, #061b3a 38%, #08224a 68%, #03152f 100%);
+      background: linear-gradient(180deg, #061b3a 0%, #061b3a 24%, #eaf6ff 24%, #f5fbff 52%, #071d3a 52%, #08224a 74%, #ffffff 100%);
     }
 
     .loader {
-      background: linear-gradient(135deg, #03152f, #0b3f8f 58%, #2f80ed);
+      background: linear-gradient(135deg, #ffffff, #dceeff);
     }
 
     .loader-mark,
@@ -2559,60 +2556,67 @@
     #bml-chat-button,
     #bml-chat-header,
     #bml-send-btn {
-      background: linear-gradient(135deg, #0b3f8f, #2f80ed 58%, #7dd3fc) !important;
+      background: linear-gradient(135deg, #061b3a, #0b3f8f 58%, #2f80ed) !important;
       color: #ffffff !important;
     }
 
-    #progress,
+    #progress {
+      background: linear-gradient(90deg, #061b3a, #0b3f8f, #2f80ed) !important;
+    }
+
     .marquee {
-      background: linear-gradient(90deg, #03152f, #0b3f8f, #2f80ed) !important;
-      color: #ffffff;
+      background: #ffffff !important;
+      color: #08224a;
+      border-top: 1px solid rgba(11, 63, 143, .10);
+      border-bottom: 1px solid rgba(11, 63, 143, .10);
+      box-shadow: 0 12px 30px rgba(6, 27, 58, .08);
     }
 
     .nav,
     .nav.is-solid {
-      background: rgba(3, 21, 47, .94);
-      border-color: rgba(125, 211, 252, .24);
-      box-shadow: 0 16px 42px rgba(0, 12, 32, .36);
+      background: rgba(255, 255, 255, .94);
+      border-color: rgba(11, 63, 143, .12);
+      box-shadow: 0 16px 42px rgba(6, 27, 58, .12);
     }
 
+    .brand,
     .nav-links a {
-      color: rgba(238, 247, 255, .84);
+      color: #08224a;
     }
 
     .nav-links a:hover {
-      color: #ffffff;
-      background: rgba(125, 211, 252, .12);
+      color: #0b3f8f;
+      background: rgba(47, 128, 237, .10);
     }
 
     .btn-primary {
       color: #ffffff;
-      background: linear-gradient(135deg, #0b3f8f, #2f80ed 58%, #7dd3fc);
-      box-shadow: 0 16px 36px rgba(47, 128, 237, .28);
+      background: linear-gradient(135deg, #061b3a, #0b3f8f 58%, #2f80ed);
+      box-shadow: 0 16px 36px rgba(47, 128, 237, .22);
     }
 
     .btn-light {
-      color: #03152f;
-      background: rgba(238, 247, 255, .94);
-      border-color: rgba(255, 255, 255, .62);
+      color: #061b3a;
+      background: rgba(255, 255, 255, .94);
+      border-color: rgba(255, 255, 255, .68);
     }
 
     .btn-outline {
-      color: #7dd3fc;
-      background: rgba(125, 211, 252, .08);
-      border-color: rgba(125, 211, 252, .28);
+      color: #0b3f8f;
+      background: rgba(47, 128, 237, .08);
+      border-color: rgba(47, 128, 237, .24);
     }
 
     .btn-outline:hover {
-      background: #2f80ed;
+      background: #0b3f8f;
       color: #ffffff;
     }
 
     .hero,
     .hero::before {
       background:
-        radial-gradient(circle at 74% 20%, rgba(125, 211, 252, .20), transparent 30%),
-        linear-gradient(135deg, #03152f 0%, #061b3a 52%, #0b3f8f 100%);
+        radial-gradient(circle at 75% 18%, rgba(143, 211, 255, .22), transparent 32%),
+        linear-gradient(135deg, #03152f 0%, #061b3a 55%, #0b3f8f 100%);
     }
 
     .hero h1,
@@ -2621,7 +2625,7 @@
     }
 
     .hero h1 span {
-      background: linear-gradient(90deg, #ffffff, #7dd3fc 48%, #ffd166);
+      background: linear-gradient(90deg, #ffffff, #8fd3ff 48%, #ffd166);
       -webkit-background-clip: text;
       background-clip: text;
     }
@@ -2629,96 +2633,104 @@
     .hero-copy,
     .hero .stat span,
     .hero-kicker {
-      color: rgba(238, 247, 255, .82);
+      color: rgba(238, 247, 255, .84);
     }
 
     .hero-kicker {
-      border-color: rgba(125, 211, 252, .24);
-      background: rgba(125, 211, 252, .10);
+      border-color: rgba(143, 211, 255, .24);
+      background: rgba(143, 211, 255, .10);
     }
 
     .about,
     .quick-services,
     .contact {
-      background: linear-gradient(180deg, #061b3a 0%, #0b2a55 100%);
-      color: #eef7ff;
+      background: linear-gradient(180deg, #f5fbff 0%, #dceeff 100%);
+      color: #08224a;
     }
 
     .services,
     .stories {
-      background: linear-gradient(180deg, #03152f 0%, #08224a 100%);
+      background: linear-gradient(180deg, #061b3a 0%, #082b58 100%);
       color: #ffffff;
     }
 
     .about .section-title,
     .quick-services .section-title,
-    .contact .section-title,
+    .contact .section-title {
+      color: #08224a;
+    }
+
     .services .section-title,
     .stories .section-title {
       color: #ffffff;
     }
 
+    .about .section-copy,
+    .quick-services .section-copy,
+    .contact .section-copy,
+    .about-text p,
+    .quick-card p,
+    .office p {
+      color: #4d6784;
+    }
+
     .services .section-copy,
     .stories .section-copy,
-    .section-copy,
-    .about-text p,
     .service p,
-    .quick-card p,
-    .story p,
-    .office p {
-      color: #b9d2ec;
+    .story p {
+      color: rgba(238, 247, 255, .78);
     }
 
     .eyebrow,
-    .service-label,
-    .visual-note strong,
-    .office h3,
     .quick-card a,
-    .office-icon,
-    .stars {
-      color: #7dd3fc;
+    .office-icon {
+      color: #0b3f8f;
     }
 
+    .service-label,
     .services .eyebrow,
     .stories .eyebrow,
     .services .service-label,
-    .stories .stars {
+    .visual-note strong,
+    .stars {
       color: #ffd166;
     }
 
     .eyebrow::before {
-      background: linear-gradient(90deg, #2f80ed, #7dd3fc, #ffd166);
+      background: linear-gradient(90deg, #0b3f8f, #2f80ed, #8fd3ff);
     }
 
-    .service h3,
     .quick-card h3,
-    .story strong,
     .office h3,
     .visual-note,
     .availability strong {
+      color: #08224a;
+    }
+
+    .service h3,
+    .story strong {
       color: #ffffff;
     }
 
-    .service,
     .quick-card,
-    .story,
     .office,
     .visual-note,
     .availability {
-      background: rgba(7, 30, 63, .90);
-      border-color: rgba(125, 211, 252, .20);
-      box-shadow: 0 16px 44px rgba(0, 12, 32, .28);
+      background: rgba(255, 255, 255, .94);
+      border-color: rgba(11, 63, 143, .14);
+      box-shadow: 0 14px 34px rgba(6, 27, 58, .10);
     }
 
     .service,
-    .quick-card,
     .story {
-      background: linear-gradient(135deg, rgba(8, 34, 74, .96) 0%, rgba(15, 59, 115, .94) 100%);
+      background: linear-gradient(135deg, rgba(8, 34, 74, .96) 0%, rgba(13, 54, 102, .94) 100%);
+      border-color: rgba(143, 211, 255, .18);
+      box-shadow: 0 16px 44px rgba(0, 12, 32, .24);
     }
 
     .quick-card.feature,
     .philosophy {
-      background: linear-gradient(135deg, #0b3f8f, #2f80ed 58%, #7dd3fc);
+      background: linear-gradient(135deg, #061b3a, #0b3f8f 58%, #2f80ed);
       color: #ffffff;
     }
 
@@ -2729,27 +2741,29 @@
     }
 
     .quick-card.feature p,
-    .philosophy small,
-    .availability span {
-      color: rgba(238, 247, 255, .84);
+    .philosophy small {
+      color: rgba(238, 247, 255, .86);
     }
 
     .contact-card {
-      background: linear-gradient(135deg, #08224a, #0f3b73);
+      background: #ffffff;
+      border: 1px solid rgba(11, 63, 143, .12);
+      box-shadow: 0 18px 48px rgba(6, 27, 58, .14);
     }
 
     footer {
-      color: rgba(238, 247, 255, .76);
-      background: linear-gradient(180deg, #03152f 0%, #010817 100%);
+      color: #4d6784;
+      background: #ffffff;
+      border-top: 1px solid rgba(11, 63, 143, .10);
     }
 
     .footer-grid {
-      border-bottom-color: rgba(125, 211, 252, .16);
+      border-bottom-color: rgba(11, 63, 143, .12);
     }
 
     .footer-brand,
     .footer-title {
-      color: #ffffff;
+      color: #08224a;
     }
 
     .footer-sub,
@@ -2757,21 +2771,21 @@
     .footer-contact span,
     .footer-contact a,
     .footer-bottom {
-      color: rgba(238, 247, 255, .76);
+      color: #4d6784;
     }
 
     .footer-links a:hover {
-      color: #7dd3fc;
+      color: #0b3f8f;
     }
 
     .socials a {
-      color: #ffffff;
-      background: rgba(125, 211, 252, .10);
-      border-color: rgba(125, 211, 252, .18);
+      color: #0b3f8f;
+      background: rgba(47, 128, 237, .08);
+      border-color: rgba(47, 128, 237, .18);
     }
 
     .socials a:hover {
-      background: #2f80ed;
+      background: #0b3f8f;
       color: #ffffff;
     }
 
@@ -2782,8 +2796,8 @@
 
     @keyframes section-sweep {
       0%, 100% { transform: translateX(-48%) skewX(-12deg); opacity: 0; }
-      18%, 62% { opacity: .16; }
-      50% { transform: translateX(48%) skewX(-12deg); opacity: .22; }
+      18%, 62% { opacity: .055; }
+      50% { transform: translateX(48%) skewX(-12deg); opacity: .09; }
     }
 
     @keyframes hero-card-float {
@@ -2839,15 +2853,18 @@
       inset: 0;
       z-index: 0;
       pointer-events: none;
-      background: linear-gradient(110deg, transparent 0 36%, rgba(255, 255, 255, .32) 50%, transparent 64%);
-      animation: section-sweep 13s ease-in-out infinite;
+      background: linear-gradient(110deg, transparent 0 40%, rgba(255, 255, 255, .18) 50%, transparent 60%);
+      animation: section-sweep 16s ease-in-out infinite;
     }
 
     .services::before,
-    .stories::before,
+    .stories::before {
+      background: linear-gradient(110deg, transparent 0 40%, rgba(143, 211, 255, .10) 50%, transparent 60%);
+      animation-duration: 18s;
+    }
+
     footer::before {
-      background: linear-gradient(110deg, transparent 0 38%, rgba(255, 196, 90, .16) 50%, transparent 62%);
-      animation-duration: 15s;
+      display: none;
     }
 
     .quick-services::before,
