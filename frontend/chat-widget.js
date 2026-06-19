@@ -11,6 +11,7 @@
     : BML_API + '/static';
   const USE_WEBSOCKET = true;
   const REQUEST_TIMEOUT_MS = 25000;
+  const START_SESSION_TIMEOUT_MS = 45000;
 
   // ── State ──────────────────────────────────────────────────────────────
   let sessionId = null;
@@ -142,14 +143,18 @@
     }, REQUEST_TIMEOUT_MS);
   }
 
-  async function fetchWithTimeout(url, options = {}) {
+  async function fetchWithTimeout(url, options = {}, timeoutMs = REQUEST_TIMEOUT_MS) {
     const controller = new AbortController();
-    const timer = setTimeout(() => controller.abort(), REQUEST_TIMEOUT_MS);
+    const timer = setTimeout(() => controller.abort(), timeoutMs);
     try {
       return await fetch(url, { ...options, signal: controller.signal });
     } finally {
       clearTimeout(timer);
     }
+  }
+
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   function clearBadge() {
@@ -170,23 +175,41 @@
 
   // ── Session ────────────────────────────────────────────────────────────
   async function startSession() {
+    showTyping();
     try {
-      const res = await fetchWithTimeout(BML_API + '/api/chat/start', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ channel: 'web' })
-      });
-      const data = await res.json();
-      sessionId = data.session_id;
+      let data = null;
+      let lastError = null;
 
+      for (let attempt = 0; attempt < 2; attempt++) {
+        try {
+          const res = await fetchWithTimeout(BML_API + '/api/chat/start', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ channel: 'web' })
+          }, START_SESSION_TIMEOUT_MS);
+
+          if (!res.ok) throw new Error(`Chat start failed: ${res.status}`);
+          data = await res.json();
+          break;
+        } catch (error) {
+          lastError = error;
+          if (attempt === 0) await wait(1800);
+        }
+      }
+
+      if (!data || !data.session_id) throw lastError || new Error('Chat start failed');
+
+      sessionId = data.session_id;
       appendBotMessage(data.welcome_message, data.quick_replies);
 
       if (USE_WEBSOCKET) connectWebSocket();
     } catch (e) {
       appendBotMessage(
-        "Welcome to the Asiri Perera Global Services AI Assistant. I am having trouble connecting to the live chat service right now. Please try again in a moment or contact WhatsApp: +94 717 798989.",
+        "Welcome to the Asiri Perera Global Services AI Assistant. The AI service is still waking up. Please close and reopen the chat in a moment, or contact WhatsApp: +94 717 798989.",
         []
       );
+    } finally {
+      hideTyping();
     }
   }
 
