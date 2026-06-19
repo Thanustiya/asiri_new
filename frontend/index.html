@@ -3062,6 +3062,355 @@
       }
     }
 
+
+    /* =========================================================
+       FINAL UPDATE: phone layout polish
+    ========================================================= */
+
+    @media (max-width: 760px) {
+      html,
+      body {
+        overflow-x: hidden;
+      }
+
+      .wrap,
+      .narrow,
+      .hero-content,
+      .scroll-note {
+        width: min(100% - 28px, var(--max));
+      }
+
+      .nav {
+        top: 10px;
+        width: calc(100% - 24px);
+        min-height: 58px;
+        padding: 8px 9px;
+        border-radius: 18px;
+        gap: 8px;
+      }
+
+      .brand {
+        min-width: 0;
+      }
+
+      .brand-mark {
+        width: 38px;
+        height: 38px;
+        font-size: .78rem;
+      }
+
+      .brand span:last-child {
+        max-width: 112px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .nav .btn {
+        min-height: 40px;
+        width: auto;
+        flex: 0 0 auto;
+        padding: 0 12px;
+        font-size: .72rem;
+      }
+
+      .nav .btn svg {
+        display: none;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-top: 96px;
+        padding-bottom: 54px;
+      }
+
+      .hero-kicker {
+        width: fit-content;
+        max-width: 100%;
+        padding: 8px 12px;
+        font-size: .68rem;
+      }
+
+      .hero h1 {
+        max-width: 9ch;
+        font-size: clamp(2.65rem, 13vw, 3.75rem);
+        line-height: .98;
+      }
+
+      .hero-copy {
+        max-width: 33rem;
+        font-size: .98rem;
+        line-height: 1.62;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .btn {
+        min-height: 48px;
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-meta {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .stat {
+        padding: 14px 15px;
+      }
+
+      .hero-showcase {
+        min-height: 330px;
+        display: grid;
+        place-items: center;
+      }
+
+      .hero-photo-card {
+        width: min(292px, 92vw);
+        padding: 10px;
+        border-radius: 24px 8px 24px 8px;
+        animation: none;
+      }
+
+      .hero-photo-frame {
+        border-radius: 18px 6px 18px 6px;
+      }
+
+      .hero-photo-tag {
+        left: 2px;
+        bottom: 12px;
+        max-width: 155px;
+        padding: 11px 12px;
+      }
+
+      .hero-photo-badge {
+        right: 0;
+        top: 14px;
+        min-height: 36px;
+        padding: 0 11px;
+        font-size: .62rem;
+      }
+
+      .marquee {
+        padding: 13px 0;
+      }
+
+      .marquee span {
+        font-size: .95rem;
+      }
+
+      .about,
+      .services,
+      .quick-services,
+      .stories,
+      .contact {
+        padding: 64px 0;
+      }
+
+      .section-head {
+        gap: 14px;
+      }
+
+      .section-title {
+        font-size: clamp(2rem, 10vw, 2.85rem);
+        line-height: 1.04;
+      }
+
+      .section-copy,
+      .about-text p {
+        font-size: .98rem;
+        line-height: 1.68;
+      }
+
+      .about-grid,
+      .contact-layout {
+        gap: 26px;
+      }
+
+      .portrait {
+        border-radius: 24px 8px 24px 8px;
+      }
+
+      .philosophy {
+        padding: 18px;
+        border-radius: 18px 6px 18px 6px;
+      }
+
+      .service,
+      .service:nth-child(even) {
+        grid-template-columns: 1fr;
+        border-width: 2px;
+        border-radius: 18px;
+        overflow: hidden;
+      }
+
+      .service-copy {
+        padding: 22px;
+      }
+
+      .service-top {
+        gap: 12px;
+      }
+
+      .service-number {
+        width: 42px;
+        height: 42px;
+        font-size: .82rem;
+      }
+
+      .service-label {
+        font-size: .68rem;
+      }
+
+      .service h3 {
+        margin-top: 16px;
+        font-size: clamp(1.85rem, 9vw, 2.55rem);
+        line-height: 1.06;
+      }
+
+      .service p {
+        font-size: .96rem;
+        line-height: 1.62;
+      }
+
+      .service ul {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin: 18px 0 22px;
+      }
+
+      .service li {
+        font-size: .92rem;
+      }
+
+      .service-visual {
+        min-height: 230px;
+      }
+
+      .visual-note {
+        left: 12px;
+        right: 12px;
+        bottom: 12px;
+        width: auto;
+        padding: 12px 13px;
+        font-size: .78rem;
+      }
+
+      .quick-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+      }
+
+      .quick-card,
+      .office {
+        padding: 22px;
+        border-radius: 18px;
+      }
+
+      .slider-shell {
+        margin-top: 24px;
+      }
+
+      .story {
+        flex: 0 0 calc(100vw - 44px);
+        min-height: 320px;
+        padding: 22px;
+        border-radius: 18px;
+      }
+
+      .story p {
+        font-size: .96rem;
+        line-height: 1.62;
+      }
+
+      .author {
+        align-items: center;
+      }
+
+      .slider-actions {
+        justify-content: center;
+      }
+
+      .contact-card {
+        border-radius: 22px;
+      }
+
+      .office {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        gap: 26px;
+      }
+
+      .footer-bottom {
+        gap: 12px;
+      }
+
+      .about::before,
+      .services::before,
+      .quick-services::before,
+      .stories::before,
+      .contact::before,
+      footer::before {
+        display: none;
+      }
+
+      .slider-shell.is-visible .story,
+      .reveal.is-visible .service-number,
+      .reveal.is-visible .quick-icon,
+      .reveal.is-visible .office-icon {
+        animation: none;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .nav {
+        width: calc(100% - 18px);
+      }
+
+      .brand span:last-child {
+        max-width: 92px;
+      }
+
+      .nav .btn {
+        padding-inline: 10px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.45rem, 13vw, 3.25rem);
+      }
+
+      .hero-showcase {
+        min-height: 305px;
+      }
+
+      .hero-photo-card {
+        width: min(270px, 92vw);
+      }
+
+      .service-copy,
+      .quick-card,
+      .office,
+      .story {
+        padding: 20px;
+      }
+
+      .story {
+        flex-basis: calc(100vw - 34px);
+      }
+    }
+
 </style>
 </head>
 <body>
