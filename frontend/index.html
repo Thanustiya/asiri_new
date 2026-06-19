@@ -2516,37 +2516,40 @@
 
 
     /* =========================================================
-       FINAL UPDATE: Render backend + warm dark/light section rhythm
+       FINAL UPDATE: Render backend + deep blue background
     ========================================================= */
 
     :root {
-      --ink: #241205;
-      --navy: #2a1406;
-      --blue: #8b4a12;
-      --sky: #d88925;
-      --aqua: #f2b84b;
-      --coral: #b96316;
-      --gold: #ffc45a;
-      --paper: #fff0d6;
-      --soft: #ffe2aa;
+      --ink: #eef7ff;
+      --navy: #03152f;
+      --blue: #0b3f8f;
+      --sky: #2f80ed;
+      --aqua: #7dd3fc;
+      --coral: #f7b955;
+      --gold: #ffd166;
+      --paper: #061b3a;
+      --soft: #0b2a55;
       --white: #ffffff;
-      --muted: #745a3b;
-      --line: rgba(139, 74, 18, .18);
-      --shadow: 0 18px 52px rgba(42, 20, 6, .16);
+      --muted: #b9d2ec;
+      --line: rgba(125, 211, 252, .22);
+      --shadow: 0 20px 58px rgba(0, 12, 32, .36);
     }
 
     html,
     body {
-      background: #fff0d6;
-      color: #241205;
+      background: #03152f;
+      color: #eef7ff;
     }
 
     body {
-      background: linear-gradient(180deg, #2a1406 0%, #fff0d6 22%, #3a1b07 54%, #ffe8b8 100%);
+      background:
+        radial-gradient(circle at 14% 8%, rgba(47, 128, 237, .26), transparent 34%),
+        radial-gradient(circle at 86% 28%, rgba(125, 211, 252, .16), transparent 31%),
+        linear-gradient(180deg, #03152f 0%, #061b3a 38%, #08224a 68%, #03152f 100%);
     }
 
     .loader {
-      background: linear-gradient(135deg, #fff0d6, #ffd98b);
+      background: linear-gradient(135deg, #03152f, #0b3f8f 58%, #2f80ed);
     }
 
     .loader-mark,
@@ -2556,58 +2559,60 @@
     #bml-chat-button,
     #bml-chat-header,
     #bml-send-btn {
-      background: linear-gradient(135deg, #3a1b07, #b96316 58%, #ffc45a) !important;
+      background: linear-gradient(135deg, #0b3f8f, #2f80ed 58%, #7dd3fc) !important;
       color: #ffffff !important;
     }
 
     #progress,
     .marquee {
-      background: linear-gradient(90deg, #2a1406, #8b4a12, #f2b84b) !important;
+      background: linear-gradient(90deg, #03152f, #0b3f8f, #2f80ed) !important;
       color: #ffffff;
     }
 
     .nav,
     .nav.is-solid {
-      background: rgba(42, 20, 6, .94);
-      border-color: rgba(255, 218, 145, .24);
-      box-shadow: 0 16px 42px rgba(42, 20, 6, .28);
+      background: rgba(3, 21, 47, .94);
+      border-color: rgba(125, 211, 252, .24);
+      box-shadow: 0 16px 42px rgba(0, 12, 32, .36);
     }
 
     .nav-links a {
-      color: rgba(255, 246, 229, .82);
+      color: rgba(238, 247, 255, .84);
     }
 
     .nav-links a:hover {
       color: #ffffff;
-      background: rgba(255, 196, 90, .14);
+      background: rgba(125, 211, 252, .12);
     }
 
     .btn-primary {
       color: #ffffff;
-      background: linear-gradient(135deg, #3a1b07, #b96316 58%, #ffc45a);
-      box-shadow: 0 16px 36px rgba(185, 99, 22, .24);
+      background: linear-gradient(135deg, #0b3f8f, #2f80ed 58%, #7dd3fc);
+      box-shadow: 0 16px 36px rgba(47, 128, 237, .28);
     }
 
     .btn-light {
-      color: #2a1406;
-      background: rgba(255, 240, 214, .94);
-      border-color: rgba(255, 255, 255, .58);
+      color: #03152f;
+      background: rgba(238, 247, 255, .94);
+      border-color: rgba(255, 255, 255, .62);
     }
 
     .btn-outline {
-      color: #8b4a12;
-      background: rgba(185, 99, 22, .08);
-      border-color: rgba(185, 99, 22, .24);
+      color: #7dd3fc;
+      background: rgba(125, 211, 252, .08);
+      border-color: rgba(125, 211, 252, .28);
     }
 
     .btn-outline:hover {
-      background: #8b4a12;
+      background: #2f80ed;
       color: #ffffff;
     }
 
     .hero,
     .hero::before {
-      background: linear-gradient(135deg, #1a0b03 0%, #3a1b07 52%, #b96316 100%);
+      background:
+        radial-gradient(circle at 74% 20%, rgba(125, 211, 252, .20), transparent 30%),
+        linear-gradient(135deg, #03152f 0%, #061b3a 52%, #0b3f8f 100%);
     }
 
     .hero h1,
@@ -2616,7 +2621,7 @@
     }
 
     .hero h1 span {
-      background: linear-gradient(90deg, #ffffff, #ffd98b 48%, #f2b84b);
+      background: linear-gradient(90deg, #ffffff, #7dd3fc 48%, #ffd166);
       -webkit-background-clip: text;
       background-clip: text;
     }
@@ -2624,41 +2629,44 @@
     .hero-copy,
     .hero .stat span,
     .hero-kicker {
-      color: rgba(255, 246, 229, .82);
+      color: rgba(238, 247, 255, .82);
     }
 
     .hero-kicker {
-      border-color: rgba(255, 218, 145, .22);
-      background: rgba(255, 196, 90, .12);
+      border-color: rgba(125, 211, 252, .24);
+      background: rgba(125, 211, 252, .10);
     }
 
     .about,
     .quick-services,
     .contact {
-      background: linear-gradient(180deg, #fff3df 0%, #ffe5b3 100%);
-      color: #241205;
+      background: linear-gradient(180deg, #061b3a 0%, #0b2a55 100%);
+      color: #eef7ff;
     }
 
     .services,
     .stories {
-      background: linear-gradient(180deg, #2a1406 0%, #4a2208 100%);
+      background: linear-gradient(180deg, #03152f 0%, #08224a 100%);
       color: #ffffff;
     }
 
     .about .section-title,
     .quick-services .section-title,
-    .contact .section-title {
-      color: #241205;
-    }
-
+    .contact .section-title,
     .services .section-title,
     .stories .section-title {
       color: #ffffff;
     }
 
     .services .section-copy,
-    .stories .section-copy {
-      color: rgba(255, 246, 229, .78);
+    .stories .section-copy,
+    .section-copy,
+    .about-text p,
+    .service p,
+    .quick-card p,
+    .story p,
+    .office p {
+      color: #b9d2ec;
     }
 
     .eyebrow,
@@ -2668,27 +2676,27 @@
     .quick-card a,
     .office-icon,
     .stars {
-      color: #b96316;
+      color: #7dd3fc;
     }
 
     .services .eyebrow,
     .stories .eyebrow,
     .services .service-label,
     .stories .stars {
-      color: #ffc45a;
+      color: #ffd166;
     }
 
     .eyebrow::before {
-      background: linear-gradient(90deg, #8b4a12, #ffc45a);
+      background: linear-gradient(90deg, #2f80ed, #7dd3fc, #ffd166);
     }
 
-    .section-copy,
-    .about-text p,
-    .service p,
-    .quick-card p,
-    .story p,
-    .office p {
-      color: #745a3b;
+    .service h3,
+    .quick-card h3,
+    .story strong,
+    .office h3,
+    .visual-note,
+    .availability strong {
+      color: #ffffff;
     }
 
     .service,
@@ -2697,20 +2705,20 @@
     .office,
     .visual-note,
     .availability {
-      background: rgba(255, 243, 223, .96);
-      border-color: rgba(185, 99, 22, .18);
-      box-shadow: 0 14px 38px rgba(42, 20, 6, .13);
+      background: rgba(7, 30, 63, .90);
+      border-color: rgba(125, 211, 252, .20);
+      box-shadow: 0 16px 44px rgba(0, 12, 32, .28);
     }
 
     .service,
     .quick-card,
     .story {
-      background: linear-gradient(135deg, #fff3df 0%, #ffdfa3 100%);
+      background: linear-gradient(135deg, rgba(8, 34, 74, .96) 0%, rgba(15, 59, 115, .94) 100%);
     }
 
     .quick-card.feature,
     .philosophy {
-      background: linear-gradient(135deg, #3a1b07, #b96316 58%, #ffc45a);
+      background: linear-gradient(135deg, #0b3f8f, #2f80ed 58%, #7dd3fc);
       color: #ffffff;
     }
 
@@ -2721,21 +2729,22 @@
     }
 
     .quick-card.feature p,
-    .philosophy small {
-      color: rgba(255, 246, 229, .84);
+    .philosophy small,
+    .availability span {
+      color: rgba(238, 247, 255, .84);
     }
 
     .contact-card {
-      background: #ffdc98;
+      background: linear-gradient(135deg, #08224a, #0f3b73);
     }
 
     footer {
-      color: rgba(255, 246, 229, .74);
-      background: linear-gradient(180deg, #2a1406 0%, #120601 100%);
+      color: rgba(238, 247, 255, .76);
+      background: linear-gradient(180deg, #03152f 0%, #010817 100%);
     }
 
     .footer-grid {
-      border-bottom-color: rgba(255, 218, 145, .16);
+      border-bottom-color: rgba(125, 211, 252, .16);
     }
 
     .footer-brand,
@@ -2748,21 +2757,21 @@
     .footer-contact span,
     .footer-contact a,
     .footer-bottom {
-      color: rgba(255, 246, 229, .74);
+      color: rgba(238, 247, 255, .76);
     }
 
     .footer-links a:hover {
-      color: #ffc45a;
+      color: #7dd3fc;
     }
 
     .socials a {
       color: #ffffff;
-      background: rgba(255, 196, 90, .10);
-      border-color: rgba(255, 218, 145, .18);
+      background: rgba(125, 211, 252, .10);
+      border-color: rgba(125, 211, 252, .18);
     }
 
     .socials a:hover {
-      background: #b96316;
+      background: #2f80ed;
       color: #ffffff;
     }
 
