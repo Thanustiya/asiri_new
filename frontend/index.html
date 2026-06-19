@@ -2707,9 +2707,12 @@
       color: #08224a;
     }
 
-    .service h3,
-    .story strong {
+    .service h3 {
       color: #ffffff;
+    }
+
+    .story strong {
+      color: #08224a;
     }
 
     .quick-card,
@@ -2721,11 +2724,27 @@
       box-shadow: 0 14px 34px rgba(6, 27, 58, .10);
     }
 
-    .service,
-    .story {
+    .service {
       background: linear-gradient(135deg, rgba(6, 29, 62, .97) 0%, rgba(10, 49, 93, .95) 100%);
-      border-color: rgba(143, 211, 255, .18);
-      box-shadow: 0 16px 44px rgba(0, 12, 32, .24);
+      border: 2px solid rgba(255, 255, 255, .78);
+      box-shadow:
+        0 16px 44px rgba(0, 12, 32, .24),
+        inset 0 0 0 1px rgba(143, 211, 255, .16);
+    }
+
+    .story {
+      background: #ffffff;
+      color: #08224a;
+      border: 1px solid rgba(11, 63, 143, .12);
+      box-shadow: 0 16px 36px rgba(6, 27, 58, .16);
+    }
+
+    .story p {
+      color: #314f70;
+    }
+
+    .author span {
+      color: #5b718a;
     }
 
     .service li {
